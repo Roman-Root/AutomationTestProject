@@ -13,6 +13,8 @@ public class LoginPage {
     private By passwordField = By.xpath("//*[@id='current-password']");
     private By loginButton = By.xpath("//*[@id='root']/div/div/div[4]/div[1]/div/div[4]/div[1]/button");
     private By forgotPassword = By.xpath("//*[@id='root']/div/div/div[4]/div[1]/div/div[4]/div[2]/a");
+    private By forgotPassworddddd = By.xpath("//*[@id='root']/div/div/div[4]/div[1]/div/div[4]/div[2]/a");
+
 
     public LoginPage typeEmail(String email){
         driver.findElement(emailField).sendKeys(email);
