@@ -14,6 +14,7 @@ public class LoginPage {
     private By loginButton = By.xpath("//*[@id='root']/div/div/div[4]/div[1]/div/div[4]/div[1]/button");
     private By forgotPassword = By.xpath("//*[@id='root']/div/div/div[4]/div[1]/div/div[4]/div[2]/a");
     private By forgotPassworddddd = By.xpath("//*[@id='root']/div/div/div[4]/div[1]/div/div[4]/div[2]/a");
+    private By error = By.xpath("//*[text()='Looks like you forgot something']");
 
 
     public LoginPage typeEmail(String email){
@@ -33,5 +34,9 @@ public class LoginPage {
         this.typePassword(password);
         this.clickLoginButton();
         return new LoginPage(driver);
+    }
+    public LoginPage getErrorText(){
+        driver.findElement(error).getText();
+        return this;
     }
 }
