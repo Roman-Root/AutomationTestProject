@@ -1,7 +1,9 @@
+package ui;
+
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import ui.LoginPage;
 
 import java.util.concurrent.TimeUnit;
 

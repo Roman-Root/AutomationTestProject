@@ -1,5 +1,8 @@
+package ui;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import ui.LoginPage;
 
 public class StartPage {
     private WebDriver driver;
