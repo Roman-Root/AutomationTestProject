@@ -25,4 +25,22 @@ public class ReqresTest {
         Assert.assertNotNull(users);
 
     }
+
+    @Test
+    public void registr(){
+        //expected result
+        Integer id = 4;
+        String token = "QpwL5tke4Pnpja7X4";
+        //body
+        RegisterRequest user = new RegisterRequest("eve.holt@reqres.in","pistol");
+        RegisterResponse response = given()
+                .body(user)
+                .when()
+                .post(URL + "api/register")
+                .then().log().all()
+                .extract().as(RegisterResponse.class);
+
+        Assert.assertEquals(id, response.getClass());
+
+    }
 }
