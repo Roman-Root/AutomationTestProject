@@ -23,8 +23,8 @@
         <allure-testng.version>2.14.0</allure-testng.version>
         <testng.version>7.4.0</testng.version>
         <lombok.version>1.18.20</lombok.version>
-        <rest-assured.version>4.4.0</rest-assured.version>
-        <json-schema-validator.version>4.4.0</json-schema-validator.version>
+        <rest-assured.version>5.3.0</rest-assured.version>
+        <!--json-schema-validator.version>5.3.0</json-schema-validator.version-->
     </properties>
 
     <dependencies>
@@ -42,6 +42,13 @@
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>json-schema-validator</artifactId>
+            <version>5.3.0</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>

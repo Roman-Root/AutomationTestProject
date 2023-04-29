@@ -1,13 +1,18 @@
 package api;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.restassured.http.ContentType;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
 
 
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
+import static org.testng.Assert.*;
+
 
 public class ReqresTest {
 
@@ -22,7 +27,7 @@ public class ReqresTest {
                 .then().log().all()
                 .extract().body().jsonPath().getList("data", UserData.class);
 
-        Assert.assertNotNull(users);
+        assertNotNull(users);
 
     }
 
@@ -34,13 +39,33 @@ public class ReqresTest {
         //body
         RegisterRequest user = new RegisterRequest("eve.holt@reqres.in","pistol");
         RegisterResponse response = given()
-                .body(user)
+                .body(user).contentType(ContentType.JSON)
                 .when()
                 .post(URL + "api/register")
                 .then().log().all()
                 .extract().as(RegisterResponse.class);
 
-        Assert.assertEquals(id, response.getClass());
+        Assert.assertEquals(id, response.getId());
+        Assert.assertEquals(token, response.getToken());
+
+    }
+
+    @Test
+    public void login(){
+        //expected result
+        Integer id = 4;
+        String token = "QpwL5tke4Pnpja7X4";
+        //body
+        RegisterRequest userdata = new RegisterRequest("eve.holt@reqres.in","cityslicka");
+        RegisterResponse response = given()
+                .body(userdata).contentType(ContentType.JSON)
+                .when()
+                .post(URL + "api/login")
+                .then().log().all()
+                .extract().as(RegisterResponse.class);
+
+        Assert.assertNotNull(response);
+        Assert.assertEquals(token, response.getToken());
 
     }
 }
