@@ -32,18 +32,18 @@ public class ReqresTest {
     }
 
     @Test
-    public void registr() {
+    public void registr200() {
         //expected result
         Integer id = 4;
         String token = "QpwL5tke4Pnpja7X4";
         //body
         RegisterRequest user = new RegisterRequest("eve.holt@reqres.in", "pistol");
-        RegisterResponse response = given()
+        RegisterResponse200 response = given()
                 .body(user).contentType(ContentType.JSON)
                 .when()
                 .post(URL + "api/register")
                 .then().log().all()
-                .extract().as(RegisterResponse.class);
+                .extract().as(RegisterResponse200.class);
 
         Assert.assertEquals(id, response.getId());
         Assert.assertEquals(token, response.getToken());

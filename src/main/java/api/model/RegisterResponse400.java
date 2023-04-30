@@ -12,9 +12,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 
-public class RegisterResponse {
+public class RegisterResponse400 {
 
-    private Integer id;
-    private String token;
+    private String error;
 
 }
