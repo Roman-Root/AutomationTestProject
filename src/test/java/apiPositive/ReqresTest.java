@@ -1,6 +1,6 @@
-package api;
+package apiPositive;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import api.model.*;
 import io.restassured.http.ContentType;
 
 import org.testng.Assert;
@@ -19,7 +19,7 @@ public class ReqresTest {
     private final String URL = "https://reqres.in/";
 
     @Test
-    public void checkAvatar(){
+    public void checkAvatar() {
         List<UserData> users = given()
                 .when()
                 .contentType(ContentType.JSON)
@@ -32,12 +32,12 @@ public class ReqresTest {
     }
 
     @Test
-    public void registr(){
+    public void registr() {
         //expected result
         Integer id = 4;
         String token = "QpwL5tke4Pnpja7X4";
         //body
-        RegisterRequest user = new RegisterRequest("eve.holt@reqres.in","pistol");
+        RegisterRequest user = new RegisterRequest("eve.holt@reqres.in", "pistol");
         RegisterResponse response = given()
                 .body(user).contentType(ContentType.JSON)
                 .when()
@@ -51,21 +51,21 @@ public class ReqresTest {
     }
 
     @Test
-    public void login(){
+    public void login200() {
         //expected result
         Integer id = 4;
         String token = "QpwL5tke4Pnpja7X4";
         //body
-        RegisterRequest userdata = new RegisterRequest("eve.holt@reqres.in","cityslicka");
-        RegisterResponse response = given()
+        LoginRequest userdata = new LoginRequest("eve.holt@reqres.in", "cityslicka");
+        LoginResponse200 response200 = given()
                 .body(userdata).contentType(ContentType.JSON)
                 .when()
                 .post(URL + "api/login")
                 .then().log().all()
-                .extract().as(RegisterResponse.class);
+                .extract().as(LoginResponse200.class);
 
-        Assert.assertNotNull(response);
-        Assert.assertEquals(token, response.getToken());
+        Assert.assertNotNull(response200);
+        Assert.assertEquals(token, response200.getToken());
 
     }
 }
