@@ -2,17 +2,21 @@ package apiNegative;
 
 import api.model.*;
 import io.restassured.http.ContentType;
+import io.restassured.specification.RequestSpecification;
+import io.restassured.specification.ResponseSpecification;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.*;
 
-public class UserLoginNegative {
+public class ReqresUnsuccess {
 
     private final String URL = "https://reqres.in/";
 
     @Test
     public void registr400() {
+        //Specification request and response
+
         //expected result
         String error = "Missing password";
         //body

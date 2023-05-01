@@ -20,10 +20,11 @@ public class ReqresTest {
 
     @Test
     public void checkAvatar() {
+        Specification.InstallSpecification( Specification.requestSpecification(URL), Specification.responseSpecification200());
+
         List<UserData> users = given()
                 .when()
-                .contentType(ContentType.JSON)
-                .get(URL + "api/users?page=2")
+                .get( "api/users?page=2")
                 .then().log().all()
                 .extract().body().jsonPath().getList("data", UserData.class);
 
@@ -36,12 +37,14 @@ public class ReqresTest {
         //expected result
         Integer id = 4;
         String token = "QpwL5tke4Pnpja7X4";
+
+        Specification.InstallSpecification( Specification.requestSpecification(URL), Specification.responseSpecification200());
         //body
         RegisterRequest user = new RegisterRequest("eve.holt@reqres.in", "pistol");
         RegisterResponse200 response = given()
-                .body(user).contentType(ContentType.JSON)
+                .body(user)
                 .when()
-                .post(URL + "api/register")
+                .post("api/register")
                 .then().log().all()
                 .extract().as(RegisterResponse200.class);
 
@@ -53,14 +56,15 @@ public class ReqresTest {
     @Test
     public void login200() {
         //expected result
-        Integer id = 4;
         String token = "QpwL5tke4Pnpja7X4";
+
+        Specification.InstallSpecification(Specification.requestSpecification(URL), Specification.responseSpecification200());
         //body
         LoginRequest userdata = new LoginRequest("eve.holt@reqres.in", "cityslicka");
         LoginResponse200 response200 = given()
-                .body(userdata).contentType(ContentType.JSON)
+                .body(userdata)
                 .when()
-                .post(URL + "api/login")
+                .post( "api/login")
                 .then().log().all()
                 .extract().as(LoginResponse200.class);
 
