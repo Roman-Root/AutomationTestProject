@@ -1,5 +1,4 @@
-package api.model;
-
+package api.model.register;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -13,8 +12,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 
-public class LoginResponse200 {
+public class RegisterResponse400 {
 
-    private String token;
+    private String error;
 
 }

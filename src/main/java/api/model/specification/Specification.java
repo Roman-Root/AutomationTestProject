@@ -1,4 +1,4 @@
-package api.model;
+package api.model.specification;
 
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
@@ -16,16 +16,27 @@ public class Specification {
                 .setContentType(ContentType.JSON)
                 .build();
     }
+
     public static ResponseSpecification responseSpecification200(){
         return new ResponseSpecBuilder()
                 .expectStatusCode(200)
                 .build();
+    }
 
+    public static ResponseSpecification responseSpecification400(){
+        return new ResponseSpecBuilder()
+                .expectStatusCode(400)
+                .build();
+    }
+
+    public static ResponseSpecification responseSpecificationUnique(int status){
+        return new ResponseSpecBuilder()
+                .expectStatusCode(status)
+                .build();
     }
 
     public static void InstallSpecification(RequestSpecification request, ResponseSpecification response){
         RestAssured.requestSpecification = request;
         RestAssured.responseSpecification = response;
-
     }
 }

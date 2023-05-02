@@ -1,9 +1,10 @@
 package apiNegative;
 
-import api.model.*;
-import io.restassured.http.ContentType;
-import io.restassured.specification.RequestSpecification;
-import io.restassured.specification.ResponseSpecification;
+import api.model.login.LoginResponse400;
+import api.model.login.LoginRequest;
+import api.model.register.RegisterRequest;
+import api.model.register.RegisterResponse400;
+import api.model.specification.Specification;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -16,14 +17,13 @@ public class ReqresUnsuccess {
     @Test
     public void registr400() {
         //Specification request and response
-
+        Specification.InstallSpecification(Specification.requestSpecification(URL), Specification.responseSpecification400());
         //expected result
         String error = "Missing password";
         //body
         RegisterRequest user = new RegisterRequest("eve.holt@reqres.in", "");
         RegisterResponse400 response = given()
-                .body(user).contentType(ContentType.JSON)
-                .expect().statusCode(400)
+                .body(user)
                 .when()
                 .post(URL + "api/register")
                 .then().log().all()
@@ -32,15 +32,17 @@ public class ReqresUnsuccess {
         Assert.assertNotNull(response);
         Assert.assertEquals(error, response.getError());
     }
+
     @Test
     public void login400() {
         //expected result
         String error = "Missing password";
+        //Specification request and response
+        Specification.InstallSpecification(Specification.requestSpecification(URL), Specification.responseSpecification400());
         //body
-        LoginRequest bodyRequest = new LoginRequest("eve.holt@reqres.in","");
+        LoginRequest bodyRequest = new LoginRequest("eve.holt@reqres.in", "");
         LoginResponse400 response400 = given()
-                .body(bodyRequest).contentType(ContentType.JSON)
-                .expect().statusCode(400)
+                .body(bodyRequest)
                 .when()
                 .post(URL + "api/login")
                 .then()//.log().all()
