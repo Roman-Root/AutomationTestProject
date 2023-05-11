@@ -2,6 +2,8 @@ package apiNoPojo;
 
 import api.model.specification.Specification;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.testng.Assert;
@@ -87,9 +89,32 @@ public class NoPojo {
         JsonPath jsonPath = response.jsonPath();
         String erorrs = "Missing password";
         Assert.assertEquals(jsonPath.get("error"), erorrs);
+
     }
 
+    @Test
+    public void testPostXwwwFromUrlencode() {
+        RestAssured.baseURI = "https://reqres.in/";
+        given()
+                .contentType(ContentType.URLENC)
+                .formParam("value", "x www from urlencode")
+                .when()
+                .post("api/register")
+                .then()
+                .statusCode(415);
+    }
 
-
-
+    @Test
+    public void testPostMultiPart() {
+        RestAssured.baseURI = "https://reqres.in/";
+        given()
+                .contentType(ContentType.MULTIPART)
+                .cookie("csrftoken", "nhfuheughre87hg87rhg87eh")
+                .multiPart("fgfggf", "fhfhf")
+                .when()
+                .post("api/register")
+                .then()
+                .statusCode(400);
+    }
 }
+
