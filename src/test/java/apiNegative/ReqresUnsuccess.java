@@ -1,10 +1,10 @@
 package apiNegative;
 
-import api.model.login.LoginResponse400;
-import api.model.login.LoginRequest;
-import api.model.register.RegisterRequest;
-import api.model.register.RegisterResponse400;
-import api.model.specification.Specification;
+import api.dtoModel.login.LoginResponse400;
+import api.dtoModel.login.LoginRequest;
+import api.dtoModel.register.RegisterRequest;
+import api.dtoModel.register.RegisterResponse400;
+import api.dtoModel.specification.Specification;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

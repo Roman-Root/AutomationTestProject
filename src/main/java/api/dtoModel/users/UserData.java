@@ -1,4 +1,4 @@
-package api.model;
+package api.dtoModel.users;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -12,12 +12,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 
-public class Unknow {
+public class UserData {
 
     private Integer id;
-    private String name;
-    private Integer year;
-    private String color;
-    private String pantone_value;
+    private String email;
+    private String first_name;
+    private String last_name;
+    private String avatar;
 
 }

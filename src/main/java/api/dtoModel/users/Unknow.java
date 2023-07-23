@@ -1,5 +1,4 @@
-package api.model.login;
-
+package api.dtoModel.users;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -13,7 +12,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 
-public class LoginRequest {
-    private String email;
-    private String password;
+public class Unknow {
+
+    private Integer id;
+    private String name;
+    private Integer year;
+    private String color;
+    private String pantone_value;
+
 }

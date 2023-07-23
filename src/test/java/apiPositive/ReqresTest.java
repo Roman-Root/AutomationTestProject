@@ -1,13 +1,13 @@
 package apiPositive;
 
-import api.model.*;
-import api.model.login.LoginResponse200;
-import api.model.login.LoginRequest;
-import api.model.register.RegisterRequest;
+import api.dtoModel.login.LoginResponse200;
+import api.dtoModel.login.LoginRequest;
+import api.dtoModel.register.RegisterRequest;
 
-import api.model.register.RegisterResponse200;
-import api.model.specification.Specification;
-import api.model.users.UserData;
+import api.dtoModel.register.RegisterResponse200;
+import api.dtoModel.specification.Specification;
+import api.dtoModel.users.Unknow;
+import api.dtoModel.users.UserData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
