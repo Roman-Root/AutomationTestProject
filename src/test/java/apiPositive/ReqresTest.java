@@ -12,7 +12,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,14 +28,20 @@ public class ReqresTest {
     public void checkAvatar() {
         //Specification request and response
         Specification.InstallSpecification( Specification.requestSpecification(URL), Specification.responseSpecification200());
-        //Users list
-        List<UserData> users = given()
+
+        UserData users_root = given()
                 .when()
                 .get( "api/users?page=2")
-                .then().log().all()
-                .extract().body().jsonPath().getList("data", UserData.class);
+                .then()
+                .extract().as(UserData.class);
+        System.out.println(users_root.getData().get(1).getEmail());
 
-        assertNotNull(users);
+        List<Integer> ids = new ArrayList<>();
+        for (UserData.Datum datum : users_root.getData()) {
+             ids.add(datum.getId());
+        }
+        System.out.println(ids.get(2));
+        assertNotNull(ids);
 
     }
 
@@ -91,6 +97,8 @@ public class ReqresTest {
                 .get("api/unknown")
                 .then().log().all()
                 .extract().body().jsonPath().getList("data", Unknow.class);
+
+        System.out.println(colorsData.get(1).getColor());
         //List years
         List<Integer> years = colorsData.stream().map(Unknow::getYear).collect(Collectors.toList());
         //Sorted list years
