@@ -24,18 +24,24 @@ public class ReqresTest {
 
     private final String URL = "https://reqres.in/";
 
-    @Test
+     @Test
     public void checkAvatar() {
         //Specification request and response
         Specification.InstallSpecification( Specification.requestSpecification(URL), Specification.responseSpecification200());
-        //Users list
-        List<UserData> users = given()
+
+        UserData users_root = given()
                 .when()
                 .get( "api/users?page=2")
-                .then().log().all()
-                .extract().body().jsonPath().getList("data", UserData.class);
+                .then()
+                .extract().as(UserData.class);
+        System.out.println(users_root.getData().get(1).getEmail());
 
-        assertNotNull(users);
+        List<Integer> ids = new ArrayList<>();
+        for (UserData.Datum datum : users_root.getData()) {
+             ids.add(datum.getId());
+        }
+        System.out.println(ids.get(2));
+        assertNotNull(ids);
 
     }
 
